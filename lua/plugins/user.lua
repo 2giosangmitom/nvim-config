@@ -47,4 +47,22 @@ return {
       },
     },
   },
+
+  {
+    "2giosangmitom/lienchi.nvim",
+    init = function()
+      vim.g.lienchi_debug = true
+    end,
+    opts = {},
+  },
+
+  {
+    "catppuccin",
+    enabled = false,
+  },
+
+  {
+    "tokyonight.nvim",
+    enabled = false,
+  },
 }

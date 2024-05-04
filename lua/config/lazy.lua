@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "lienchi" } },
     { import = "plugins" },
   },
   defaults = {
@@ -25,7 +25,7 @@ require("lazy").setup({
     patterns = { "2giosangmitom" },
     path = "~/Workspace/neovim-plugins",
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "lienchi", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
