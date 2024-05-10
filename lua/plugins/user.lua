@@ -4,6 +4,9 @@ return {
     opts = {
       servers = {
         denols = {},
+        nil_ls = {
+          mason = false,
+        },
       },
     },
   },
@@ -49,11 +52,10 @@ return {
   },
 
   {
-    "2giosangmitom/lienchi.nvim",
+    "2giosangmitom/nightfall.nvim",
     init = function()
-      vim.g.lienchi_debug = true
+      vim.g.nightfall_debug = true
     end,
-    ---@type LienChiOptions
     opts = {
       integrations = {
         flash = { enabled = true },
@@ -131,5 +133,14 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        nix = { "alejandra" },
+      },
+    },
   },
 }
