@@ -3,7 +3,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        denols = {},
+        denols = {
+          mason = false,
+        },
         nil_ls = {
           mason = false,
         },
