@@ -109,4 +109,16 @@ return {
       },
     },
   },
+
+  {
+    "Exafunction/codeium.nvim",
+    opts = {
+      enable_chat = true,
+    },
+  },
+
+  { "dashboard-nvim", enabled = false },
+  { "persistence.nvim", enabled = false },
+  { "noice.nvim", enabled = false },
+  { "nvim-notify", enabled = false },
 }
