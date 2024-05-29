@@ -121,4 +121,14 @@ return {
   { "persistence.nvim", enabled = false },
   { "noice.nvim", enabled = false },
   { "nvim-notify", enabled = false },
+  { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
+      },
+    },
+  },
 }
