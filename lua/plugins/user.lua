@@ -15,6 +15,15 @@ return {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        go = { "golangcilint" },
+      },
+    },
+  },
+
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       popup_border_style = "rounded",
@@ -66,15 +75,8 @@ return {
     },
   },
 
-  {
-    "catppuccin",
-    enabled = false,
-  },
-
-  {
-    "tokyonight.nvim",
-    enabled = false,
-  },
+  { "catppuccin", enabled = false },
+  { "tokyonight.nvim", enabled = false },
 
   {
     "hrsh7th/nvim-cmp",
@@ -96,7 +98,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "typstfmt" })
+      vim.list_extend(opts.ensure_installed, { "typstfmt", "golangci-lint" })
     end,
   },
 
@@ -121,13 +123,4 @@ return {
   { "persistence.nvim", enabled = false },
   { "noice.nvim", enabled = false },
   { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      inlay_hints = {
-        enabled = false,
-      },
-    },
-  },
 }
