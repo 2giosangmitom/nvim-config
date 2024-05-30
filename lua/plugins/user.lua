@@ -120,7 +120,6 @@ return {
   { "dashboard-nvim", enabled = false },
   { "persistence.nvim", enabled = false },
   { "noice.nvim", enabled = false },
-  { "nvim-notify", enabled = false },
   { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
 
   {
