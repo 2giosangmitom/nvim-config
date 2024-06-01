@@ -3,6 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        cssls = {},
+        html = {},
         denols = {
           mason = false,
         },
@@ -117,6 +119,13 @@ return {
     opts = {
       enable_chat = true,
     },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "css", "html", "scss" })
+    end,
   },
 
   { "dashboard-nvim", enabled = false },
