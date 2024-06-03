@@ -133,13 +133,6 @@ return {
   },
 
   {
-    "Exafunction/codeium.nvim",
-    opts = {
-      enable_chat = true,
-    },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, { "css", "html", "scss" })
@@ -148,6 +141,17 @@ return {
 
   { "dashboard-nvim", enabled = false },
   { "persistence.nvim", enabled = false },
-  { "noice.nvim", enabled = false },
+
+  {
+    "noice.nvim",
+    opts = {
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+      },
+    },
+  },
+
   { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
 }
