@@ -2,9 +2,8 @@
   "extras": [
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.editor.refactoring",
-    "lazyvim.plugins.extras.formatting.prettier",
-    "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.docker",
     "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.json",
@@ -18,8 +17,7 @@
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.treesitter-context",
-    "lazyvim.plugins.extras.util.dot",
-    "lazyvim.plugins.extras.util.mini-hipatterns"
+    "lazyvim.plugins.extras.util.dot"
   ],
   "news": {
     "NEWS.md": "5204"
