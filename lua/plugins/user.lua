@@ -33,6 +33,7 @@ return {
     opts = {
       integrations = {
         flash = { enabled = true },
+        headlines = { enabled = true },
       },
     },
   },
@@ -133,7 +134,7 @@ return {
     "noice.nvim",
     opts = {
       presets = {
-        lsp_doc_border = true
+        lsp_doc_border = true,
       },
       lsp = {
         progress = {
