@@ -44,6 +44,7 @@ return {
       }
     end,
     config = function(_, opts)
+      -- Border
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.ui.border })
       vim.lsp.handlers['textDocument/signatureHelp'] =
         vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.ui.border })
@@ -52,6 +53,7 @@ return {
       -- Diagnostics
       vim.diagnostic.config(opts.diagnostics)
 
+      -- Setup servers
       for _, server in ipairs(opts.servers) do
         local server_opts = {}
         local ok, settings = pcall(require, 'lsp.' .. server)
