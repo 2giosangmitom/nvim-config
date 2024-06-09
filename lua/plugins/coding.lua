@@ -2,7 +2,12 @@ return {
   {
     'folke/lazydev.nvim',
     ft = 'lua',
-    opts = {},
+    dependencies = 'Bilal2453/luvit-meta',
+    opts = {
+      library = {
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
   },
 
   {
@@ -30,9 +35,9 @@ return {
           signs = {
             text = {
               [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-              [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+              [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
               [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-              [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+              [vim.diagnostic.severity.INFO] = icons.diagnostics.Infomation,
             },
           },
         },

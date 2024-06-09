@@ -1,8 +1,10 @@
 {
   "conform.nvim": { "branch": "master", "commit": "5541c54cf2ab078a537838e1fb9d96ae47f71255" },
   "dressing.nvim": { "branch": "master", "commit": "e3714c8049b2243e792492c4149e4cc395c68eb9" },
+  "fidget.nvim": { "branch": "main", "commit": "ef99df04a1c53a453602421bc0f756997edc8289" },
   "lazy.nvim": { "branch": "main", "commit": "eb4957442e3182f051b0ae11da32e06d22c190e3" },
   "lazydev.nvim": { "branch": "main", "commit": "107231114623e2c4f90c626ec83b3120816b554e" },
+  "luvit-meta": { "branch": "main", "commit": "ce76f6f6cdc9201523a5875a4471dcfe0186eb60" },
   "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },
   "nvim-genghis": { "branch": "main", "commit": "7055134943460d962b4909b43b4c3cd5f011c153" },
   "nvim-lspconfig": { "branch": "master", "commit": "92166b89ab4b3d60f24e58170cac53b7141fd032" },
