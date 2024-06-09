@@ -56,7 +56,7 @@ opt.inccommand = "nosplit"
 opt.list = true
 opt.shiftround = true
 opt.shiftwidth = 2
-opt.shortmess:append("WcC")
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.smartcase = true
 opt.smartindent = true
 opt.splitbelow = true
