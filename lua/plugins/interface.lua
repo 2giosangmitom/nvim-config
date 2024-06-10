@@ -24,6 +24,10 @@ return {
             St_pos_sep = { fg = colors.green, bg = colors.dark_navy },
             St_pos_icon = { fg = colors.black, bg = colors.green },
             St_pos_text = { fg = colors.green, bg = colors.dark_navy },
+            St_lspError = { bg = colors.statusline_bg, fg = colors.red },
+            St_lspWarning = { bg = colors.statusline_bg, fg = colors.pale_yellow },
+            St_lspHints = { bg = colors.statusline_bg, fg = colors.violet },
+            St_lspInfo = { bg = colors.statusline_bg, fg = colors.light_cyan },
           }
           local function genModes_hl(modename, col)
             res['St_' .. modename .. 'Mode'] = { fg = colors.black, bg = colors[col], bold = true }
