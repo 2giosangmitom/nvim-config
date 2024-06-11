@@ -29,10 +29,11 @@ return {
             St_lspWarning = { bg = colors.statusline_bg, fg = colors.pale_yellow },
             St_lspHints = { bg = colors.statusline_bg, fg = colors.violet },
             St_lspInfo = { bg = colors.statusline_bg, fg = colors.light_cyan },
-            St_gitbranch = { fg = colors.pink,bg = colors.statusline_bg, bold = true },
-            St_gitadded = { fg = colors.green,bg = colors.statusline_bg },
-            St_gitremoved = { fg = colors.red,bg = colors.statusline_bg },
-            St_gitmodified = { fg = colors.sky,bg = colors.statusline_bg },
+            St_gitbranch = { fg = colors.pink, bg = colors.statusline_bg, bold = true },
+            St_gitadded = { fg = colors.green, bg = colors.statusline_bg },
+            St_gitremoved = { fg = colors.red, bg = colors.statusline_bg },
+            St_gitmodified = { fg = colors.sky, bg = colors.statusline_bg },
+            St_lspSv = { fg = colors.peach, bg = colors.statusline_bg },
           }
           local function genModes_hl(modename, col)
             res['St_' .. modename .. 'Mode'] = { fg = colors.black, bg = colors[col], bold = true }

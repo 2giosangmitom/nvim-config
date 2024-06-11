@@ -74,8 +74,10 @@ local function get_file_info()
     end
   end
 
-  local modified = vim.bo.modified and '  ' or ' '
-  return string.format('%%#St_file#%s %s%s%%#St_file_sep#%s', icon, file_name, modified, sep_r)
+  local modified = vim.bo.modified and ' ' or ''
+  local readonly = vim.bo.readonly and ' ' or ''
+  file_name = file_name .. modified .. readonly
+  return string.format('%%#St_file#%s %s %%#St_file_sep#%s', icon, file_name, sep_r)
 end
 
 -- Get current working directory
