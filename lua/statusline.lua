@@ -91,7 +91,21 @@ local function get_cwd()
 end
 
 -- Cursor position info
-local cursor = string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# %%p %%%% ', sep_l)
+local function cursor()
+  local cur = vim.fn.line('.')
+  local total = vim.fn.line('$')
+  if cur == 1 then
+    return string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# Top ', sep_l)
+  elseif cur == total then
+    return string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# Bot ', sep_l)
+  else
+    return string.format(
+      '%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# %2d%%%% ',
+      sep_l,
+      math.floor(cur / total * 100)
+    )
+  end
+end
 
 -- Get git status
 local function get_git_status()
@@ -157,7 +171,7 @@ function M.generate()
     '%=',
     get_diagnostics(),
     get_cwd(),
-    cursor,
+    cursor(),
   })
 end
 

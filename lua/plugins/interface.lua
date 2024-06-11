@@ -178,4 +178,27 @@ return {
       select = { backend = { 'telescope', 'builtin' } },
     },
   },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { 'BufReadPost', 'BufNewFile' },
+    opts = {
+      indent = {
+        char = '│',
+        tab_char = '│',
+      },
+      scope = { show_start = false, show_end = false },
+      exclude = {
+        filetypes = {
+          'help',
+          'dashboard',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+        },
+      },
+    },
+    main = 'ibl',
+  },
 }
