@@ -7,10 +7,10 @@ return {
       'nvim-treesitter/nvim-treesitter',
     },
     ft = { 'go', 'gomod' },
-    opts = {},
-    build = function()
-      require('go.install').update_all()
-    end,
+    opts = {
+      disable_defaults = true,
+      diagnostic = false,
+    },
   },
 
   {
@@ -34,7 +34,7 @@ return {
       local icons = require('config.icons')
 
       return {
-        servers = { 'lua_ls' },
+        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls' },
         ui = {
           border = 'rounded',
         },
