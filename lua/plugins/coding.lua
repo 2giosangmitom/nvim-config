@@ -34,7 +34,7 @@ return {
       local icons = require('config.icons')
 
       return {
-        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls' },
+        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar' },
         ui = {
           border = 'rounded',
         },
