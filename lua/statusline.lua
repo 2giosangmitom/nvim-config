@@ -160,12 +160,17 @@ end
 
 local function lsp_clients()
   local buf = vim.api.nvim_win_get_buf(0)
-  for _, client in ipairs(vim.lsp.get_clients()) do
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if #clients == 0 then
+    return ''
+  end
+  local client_names = {}
+  for _, client in ipairs(clients) do
     if client.attached_buffers[buf] then
-      return (vim.o.columns > 100 and '%#St_lspSv#   LSP ~ ' .. client.name .. ' ') or '   LSP '
+      table.insert(client_names, client.name)
     end
   end
-  return ''
+  return '%#St_lspSv#   LSP ~ ' .. table.concat(client_names, ', ') .. ' '
 end
 
 -- Generate statusline
