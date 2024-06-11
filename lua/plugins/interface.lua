@@ -12,6 +12,7 @@ return {
         headlines = { enabled = true },
       },
       highlight_overrides = {
+        ---@param colors NightfallPalette
         nightfall = function(colors)
           local res = {
             St_EmptySpace = { fg = colors.grey, bg = colors.deep_navy },
@@ -19,7 +20,7 @@ return {
             St_file_sep = { fg = colors.dark_navy, bg = colors.statusline_bg },
             St_gitIcons = { fg = colors.ghost_white, bg = colors.statusline_bg },
             St_cwd_icon = { fg = colors.black, bg = colors.red },
-            St_cwd_text = { fg = colors.ghost_white, bg = colors.dark_navy },
+            St_cwd_text = { fg = colors.red, bg = colors.dark_navy },
             St_cwd_sep = { fg = colors.red, bg = colors.statusline_bg },
             St_pos_sep = { fg = colors.green, bg = colors.dark_navy },
             St_pos_icon = { fg = colors.black, bg = colors.green },
@@ -28,6 +29,10 @@ return {
             St_lspWarning = { bg = colors.statusline_bg, fg = colors.pale_yellow },
             St_lspHints = { bg = colors.statusline_bg, fg = colors.violet },
             St_lspInfo = { bg = colors.statusline_bg, fg = colors.light_cyan },
+            St_gitbranch = { fg = colors.pink,bg = colors.statusline_bg, bold = true },
+            St_gitadded = { fg = colors.green,bg = colors.statusline_bg },
+            St_gitremoved = { fg = colors.red,bg = colors.statusline_bg },
+            St_gitmodified = { fg = colors.sky,bg = colors.statusline_bg },
           }
           local function genModes_hl(modename, col)
             res['St_' .. modename .. 'Mode'] = { fg = colors.black, bg = colors[col], bold = true }

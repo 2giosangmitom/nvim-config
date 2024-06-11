@@ -63,7 +63,7 @@ end
 
 -- Get current file info
 local function get_file_info()
-  local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0))
+  local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(0))
   local file_name = buf_name == '' and 'Empty ' or buf_name:match('([^/\\]+)$')
   local icon = '󰈚'
 
@@ -109,7 +109,7 @@ end
 
 -- Get git status
 local function get_git_status()
-  local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+  local buf = vim.api.nvim_win_get_buf(0)
   local git_status = vim.b[buf].gitsigns_status_dict
   if not git_status then
     return ''
@@ -117,19 +117,19 @@ local function get_git_status()
 
   local added = git_status.added
       and git_status.added ~= 0
-      and string.format(' %s %d', icons.git.added, git_status.added)
+      and string.format(' %%#St_gitadded#%s%d', icons.git.added, git_status.added)
     or ''
   local changed = git_status.changed
       and git_status.changed ~= 0
-      and string.format(' %s %d', icons.git.modified, git_status.changed)
+      and string.format(' %%#St_gitmodified#%s%d', icons.git.modified, git_status.changed)
     or ''
   local removed = git_status.removed
       and git_status.removed ~= 0
-      and string.format(' %s %d', icons.git.removed, git_status.removed)
+      and string.format(' %%#St_gitremoved#%s%d', icons.git.removed, git_status.removed)
     or ''
-  local branch_name = ' ' .. git_status.head
+  local branch_name = '%#St_gitbranch# ' .. git_status.head
 
-  return string.format('%%#St_gitIcons# %s%s%s%s', branch_name, added, changed, removed)
+  return string.format(' %s%s%s%s', branch_name, added, changed, removed)
 end
 
 -- Get diagnostics info
@@ -138,7 +138,7 @@ local function get_diagnostics()
     return ''
   end
 
-  local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+  local buf = vim.api.nvim_win_get_buf(0)
   local severity = vim.diagnostic.severity
   local errors = #vim.diagnostic.get(buf, { severity = severity.ERROR })
   local warnings = #vim.diagnostic.get(buf, { severity = severity.WARN })
@@ -158,9 +158,19 @@ local function get_diagnostics()
   )
 end
 
+local function lsp_clients()
+  local buf = vim.api.nvim_win_get_buf(0)
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    if client.attached_buffers[buf] then
+      return (vim.o.columns > 100 and '%#St_lspSv#   LSP ~ ' .. client.name .. ' ') or '   LSP '
+    end
+  end
+  return ''
+end
+
 -- Generate statusline
 function M.generate()
-  if vim.tbl_contains({ 'TelescopePrompt' }, vim.bo.filetype) then
+  if vim.tbl_contains({ 'TelescopePrompt', 'NvimTree' }, vim.bo.filetype) then
     return ''
   end
   return table.concat({
@@ -170,6 +180,7 @@ function M.generate()
     get_git_status(),
     '%=',
     get_diagnostics(),
+    lsp_clients(),
     get_cwd(),
     cursor(),
   })
