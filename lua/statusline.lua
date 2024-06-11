@@ -1,11 +1,13 @@
 local M = {}
 
+local icons = require('config.icons')
+
 -- Define mode mappings
 local modes = {
   n = { 'NORMAL', 'Normal' },
-  no = { 'NORMAL (no)', 'Normal' },
-  nov = { 'NORMAL (nov)', 'Normal' },
-  noV = { 'NORMAL (noV)', 'Normal' },
+  no = { 'O-PENDING', 'Normal' },
+  nov = { 'O-PENDING', 'Normal' },
+  noV = { 'O-PENDING', 'Normal' },
   noCTRL_V = { 'NORMAL', 'Normal' },
   niI = { 'NORMAL i', 'Normal' },
   niR = { 'NORMAL r', 'Normal' },
@@ -16,7 +18,7 @@ local modes = {
   vs = { 'V-CHAR (Ctrl O)', 'Visual' },
   V = { 'V-LINE', 'Visual' },
   Vs = { 'V-LINE', 'Visual' },
-  [''] = { 'V-BLOCK', 'Visual' },
+  ['\22'] = { 'V-BLOCK', 'Visual' },
   i = { 'INSERT', 'Insert' },
   ic = { 'INSERT (completion)', 'Insert' },
   ix = { 'INSERT completion', 'Insert' },
@@ -29,7 +31,7 @@ local modes = {
   Rvx = { 'V-REPLACE (Rvx)', 'Replace' },
   s = { 'SELECT', 'Select' },
   S = { 'S-LINE', 'Select' },
-  [''] = { 'S-BLOCK', 'Select' },
+  ['\19'] = { 'S-BLOCK', 'Select' },
   c = { 'COMMAND', 'Command' },
   cv = { 'COMMAND', 'Command' },
   ce = { 'COMMAND', 'Command' },
@@ -99,9 +101,18 @@ local function get_git_status()
     return ''
   end
 
-  local added = git_status.added and git_status.added ~= 0 and string.format('  %d', git_status.added) or ''
-  local changed = git_status.changed and git_status.changed ~= 0 and string.format('  %d', git_status.changed) or ''
-  local removed = git_status.removed and git_status.removed ~= 0 and string.format('  %d', git_status.removed) or ''
+  local added = git_status.added
+      and git_status.added ~= 0
+      and string.format(' %s %d', icons.git.added, git_status.added)
+    or ''
+  local changed = git_status.changed
+      and git_status.changed ~= 0
+      and string.format(' %s %d', icons.git.modified, git_status.changed)
+    or ''
+  local removed = git_status.removed
+      and git_status.removed ~= 0
+      and string.format(' %s %d', icons.git.removed, git_status.removed)
+    or ''
   local branch_name = ' ' .. git_status.head
 
   return string.format('%%#St_gitIcons# %s%s%s%s', branch_name, added, changed, removed)
@@ -126,10 +137,10 @@ local function get_diagnostics()
 
   return string.format(
     ' %s%s%s%s',
-    diag_info(errors, '', 'St_lspError'),
-    diag_info(warnings, '', 'St_lspWarning'),
-    diag_info(hints, '󰛩', 'St_lspHints'),
-    diag_info(infos, '󰋼', 'St_lspInfo')
+    diag_info(errors, icons.diagnostics.Error, 'St_lspError'),
+    diag_info(warnings, icons.diagnostics.Warning, 'St_lspWarning'),
+    diag_info(hints, icons.diagnostics.Hint, 'St_lspHints'),
+    diag_info(infos, icons.diagnostics.Information, 'St_lspInfo')
   )
 end
 
