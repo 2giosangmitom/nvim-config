@@ -16,12 +16,8 @@ return {
     opts = {
       server = {
         on_attach = function(_, bufnr)
-          vim.keymap.set('n', '<leader>ca', function()
-            vim.cmd.RustLsp('codeAction')
-          end, { desc = 'Code Action', buffer = bufnr })
-          vim.keymap.set('n', '<leader>dr', function()
-            vim.cmd.RustLsp('debuggables')
-          end, { desc = 'Rust Debuggables', buffer = bufnr })
+          vim.keymap.set('n', '<leader>ca', function() vim.cmd.RustLsp('codeAction') end, { desc = 'Code Action', buffer = bufnr })
+          vim.keymap.set('n', '<leader>dr', function() vim.cmd.RustLsp('debuggables') end, { desc = 'Rust Debuggables', buffer = bufnr })
         end,
         default_settings = {
           -- rust-analyzer language server configuration
@@ -51,9 +47,7 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      vim.g.rustaceanvim = vim.tbl_deep_extend('keep', vim.g.rustaceanvim or {}, opts or {})
-    end,
+    config = function(_, opts) vim.g.rustaceanvim = vim.tbl_deep_extend('keep', vim.g.rustaceanvim or {}, opts or {}) end,
   },
 
   {
@@ -134,8 +128,7 @@ return {
       local utils = require('utils')
       -- Border
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.ui.border })
-      vim.lsp.handlers['textDocument/signatureHelp'] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.ui.border })
+      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.ui.border })
       require('lspconfig.ui.windows').default_options.border = opts.ui.border
 
       -- Diagnostics
@@ -143,9 +136,7 @@ return {
 
       -- Setup keymaps
       utils.on_attach(function(_, bufnr)
-        local function map(key, cmd, desc)
-          vim.keymap.set('n', key, cmd, { desc = desc, buffer = bufnr })
-        end
+        local function map(key, cmd, desc) vim.keymap.set('n', key, cmd, { desc = desc, buffer = bufnr }) end
         map('K', '<cmd>Lspsaga hover_doc<cr>', 'Hover')
         map('<leader>ci', '<cmd>Lspsaga incoming_calls<cr>', 'Incoming calls')
         map('<leader>co', '<cmd>Lspsaga outgoing_calls<cr>', 'Outgoing calls')
@@ -157,18 +148,14 @@ return {
         map('[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', 'Previous diagnostic')
         map('<leader>cr', '<cmd>Lspsaga rename<cr>', 'Rename')
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-        map('gI', function()
-          require('telescope.builtin').lsp_implementations({ reuse_win = true })
-        end, 'Goto Implementation')
+        map('gI', function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end, 'Goto Implementation')
       end)
 
       -- Setup servers
       for _, server in ipairs(opts.servers) do
         local server_opts = {}
         local ok, settings = pcall(require, 'lsp.' .. server)
-        if ok then
-          server_opts = vim.tbl_deep_extend('force', settings, server_opts)
-        end
+        if ok then server_opts = vim.tbl_deep_extend('force', settings, server_opts) end
         require('lspconfig')[server].setup(server_opts)
       end
     end,
@@ -206,9 +193,7 @@ return {
           fields = { 'menu', 'abbr', 'kind' },
           format = function(_, item)
             local icons = require('config.icons').kinds
-            if icons[item.kind] then
-              item.kind = icons[item.kind] .. item.kind
-            end
+            if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
             return item
           end,
         },

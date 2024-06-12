@@ -3,9 +3,7 @@ return {
     '2giosangmitom/nightfall.nvim',
     lazy = false,
     priority = 1000,
-    init = function()
-      vim.g.nightfall_debug = true
-    end,
+    init = function() vim.g.nightfall_debug = true end,
     opts = {
       integrations = {
         flash = { enabled = true },
@@ -57,13 +55,11 @@ return {
       vim.cmd('colorscheme nightfall')
     end,
   },
-
   {
     'j-hui/fidget.nvim',
     event = 'LspAttach',
     opts = {},
   },
-
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
@@ -85,34 +81,21 @@ return {
       wk.register(opts.defaults)
     end,
   },
-
   {
     'rcarriga/nvim-notify',
     opts = {
       stages = 'static',
       timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-      on_open = function(win)
-        vim.api.nvim_win_set_config(win, { zindex = 100 })
-      end,
+      max_height = function() return math.floor(vim.o.lines * 0.75) end,
+      max_width = function() return math.floor(vim.o.columns * 0.75) end,
+      on_open = function(win) vim.api.nvim_win_set_config(win, { zindex = 100 }) end,
     },
-    init = function()
-      vim.notify = require('notify')
-    end,
+    init = function() vim.notify = require('notify') end,
   },
-
   {
     'nvimdev/dashboard-nvim',
     init = function()
-      local stats = vim.fn.argc()
-      if stats == 0 then
-        require('dashboard')
-      end
+      if vim.fn.argc() == 0 then require('dashboard') end
     end,
     opts = function()
       local logo = [[
@@ -128,9 +111,7 @@ return {
 
       local opts = {
         theme = 'doom',
-        hide = {
-          statusline = false,
-        },
+        hide = { statusline = false },
         config = {
           header = vim.split(logo, '\n'),
           center = {
@@ -158,22 +139,18 @@ return {
         vim.cmd('close')
         vim.api.nvim_create_autocmd('User', {
           pattern = 'DashboardLoaded',
-          callback = function()
-            require('lazy').show()
-          end,
+          callback = function() require('lazy').show() end,
         })
       end
 
       return opts
     end,
   },
-
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {},
   },
-
   {
     'stevearc/dressing.nvim',
     lazy = true,
@@ -190,7 +167,6 @@ return {
       select = { backend = { 'telescope', 'builtin' } },
     },
   },
-
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -199,7 +175,10 @@ return {
         char = '│',
         tab_char = '│',
       },
-      scope = { show_start = false, show_end = false },
+      scope = {
+        show_start = false,
+        show_end = false,
+      },
       exclude = {
         filetypes = {
           'help',
@@ -213,40 +192,18 @@ return {
     },
     main = 'ibl',
   },
-
   {
     'folke/trouble.nvim',
     opts = {},
     cmd = 'Trouble',
     keys = {
-      {
-        '<leader>xx',
-        '<cmd>Trouble diagnostics toggle<cr>',
-        desc = 'Diagnostics (Trouble)',
-      },
-      {
-        '<leader>xX',
-        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
-      },
-      {
-        '<leader>cs',
-        '<cmd>Trouble symbols toggle focus=false<cr>',
-        desc = 'Symbols (Trouble)',
-      },
-      {
-        '<leader>xL',
-        '<cmd>Trouble loclist toggle<cr>',
-        desc = 'Location List (Trouble)',
-      },
-      {
-        '<leader>xQ',
-        '<cmd>Trouble qflist toggle<cr>',
-        desc = 'Quickfix List (Trouble)',
-      },
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)' },
+      { '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', desc = 'Symbols (Trouble)' },
+      { '<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix List (Trouble)' },
     },
   },
-
   {
     'akinsho/bufferline.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -267,9 +224,7 @@ return {
     init = function()
       vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
         callback = function()
-          vim.schedule(function()
-            pcall(nvim_bufferline)
-          end)
+          vim.schedule(function() pcall(nvim_bufferline) end)
         end,
       })
     end,

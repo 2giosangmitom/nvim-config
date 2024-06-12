@@ -6,7 +6,7 @@ return {
       { '<leader>pm', '<cmd>Mason<cr>', desc = 'Mason' },
     },
     opts = {
-      ensure_installed = { 'lua-language-server', 'hadolint', 'gopls', 'codelldb', "stylua" },
+      ensure_installed = { 'lua-language-server', 'hadolint', 'gopls', 'codelldb', 'stylua' },
       ui = {
         icons = {
           package_pending = '',
@@ -31,9 +31,7 @@ return {
       mr.refresh(function()
         for _, tool in ipairs(opts.ensure_installed) do
           local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
+          if not p:is_installed() then p:install() end
         end
       end)
     end,

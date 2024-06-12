@@ -50,14 +50,7 @@ local sep_l, sep_r = separators.left, separators.right
 local function get_mode()
   local mode = vim.api.nvim_get_mode().mode
   local mode_info = modes[mode] or { 'UNKNOWN', 'Unknown' }
-  return string.format(
-    '%%#St_%sMode#  %s %%#St_%sModeSep#%s%%#ST_EmptySpace#%s',
-    mode_info[2],
-    mode_info[1],
-    mode_info[2],
-    sep_r,
-    sep_r
-  )
+  return string.format('%%#St_%sMode#  %s %%#St_%sModeSep#%s%%#ST_EmptySpace#%s', mode_info[2], mode_info[1], mode_info[2], sep_r, sep_r)
 end
 
 local function get_file_info()
@@ -67,9 +60,7 @@ local function get_file_info()
 
   if file_name ~= 'Empty ' then
     local devicons_present, devicons = pcall(require, 'nvim-web-devicons')
-    if devicons_present then
-      icon = devicons.get_icon(file_name) or icon
-    end
+    if devicons_present then icon = devicons.get_icon(file_name) or icon end
   end
 
   local modified = vim.bo.modified and ' ' or ''
@@ -80,13 +71,9 @@ end
 
 local function get_cwd()
   local cwd = vim.uv.cwd()
-  if not cwd then
-    return ''
-  end
+  if not cwd then return '' end
   local cwd_name = cwd:match('([^/\\]+)$') or cwd
-  return vim.o.columns > 85
-      and string.format('%%#St_cwd_sep#%s%%#St_cwd_icon#󰉋 %%#St_cwd_text# %s ', sep_l, cwd_name)
-    or ''
+  return vim.o.columns > 85 and string.format('%%#St_cwd_sep#%s%%#St_cwd_icon#󰉋 %%#St_cwd_text# %s ', sep_l, cwd_name) or ''
 end
 
 local function cursor()
@@ -96,24 +83,16 @@ local function cursor()
   elseif cur == total then
     return string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# Bot ', sep_l)
   else
-    return string.format(
-      '%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# %2d%%%% ',
-      sep_l,
-      math.floor(cur / total * 100)
-    )
+    return string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# %2d%%%% ', sep_l, math.floor(cur / total * 100))
   end
 end
 
 local function get_git_status()
   local buf = vim.api.nvim_win_get_buf(0)
   local git_status = vim.b[buf].gitsigns_status_dict
-  if not git_status then
-    return ''
-  end
+  if not git_status then return '' end
 
-  local function status_info(count, icon, hl_group)
-    return count and count ~= 0 and string.format(' %%#%s#%s%d', hl_group, icon, count) or ''
-  end
+  local function status_info(count, icon, hl_group) return count and count ~= 0 and string.format(' %%#%s#%s%d', hl_group, icon, count) or '' end
 
   local added = status_info(git_status.added, icons.git.added, 'St_gitadded')
   local changed = status_info(git_status.changed, icons.git.modified, 'St_gitmodified')
@@ -124,9 +103,7 @@ local function get_git_status()
 end
 
 local function get_diagnostics()
-  if not rawget(vim, 'lsp') then
-    return ''
-  end
+  if not rawget(vim, 'lsp') then return '' end
 
   local buf = vim.api.nvim_win_get_buf(0)
   local severity = vim.diagnostic.severity
@@ -135,9 +112,7 @@ local function get_diagnostics()
   local hints = #vim.diagnostic.get(buf, { severity = severity.HINT })
   local infos = #vim.diagnostic.get(buf, { severity = severity.INFO })
 
-  local function diag_info(count, icon, hl_group)
-    return count > 0 and string.format('%%#%s#%s %d ', hl_group, icon, count) or ''
-  end
+  local function diag_info(count, icon, hl_group) return count > 0 and string.format('%%#%s#%s %d ', hl_group, icon, count) or '' end
 
   return string.format(
     ' %s%s%s%s',
@@ -151,22 +126,16 @@ end
 local function lsp_clients()
   local buf = vim.api.nvim_win_get_buf(0)
   local clients = vim.lsp.get_clients({ bufnr = 0 })
-  if #clients == 0 then
-    return ''
-  end
+  if #clients == 0 then return '' end
   local client_names = {}
   for _, client in ipairs(clients) do
-    if client.attached_buffers[buf] then
-      table.insert(client_names, client.name)
-    end
+    if client.attached_buffers[buf] then table.insert(client_names, client.name) end
   end
   return '%#St_lspSv#   LSP ~ ' .. table.concat(client_names, ', ') .. ' '
 end
 
 function M.generate()
-  if vim.tbl_contains({ 'TelescopePrompt', 'NvimTree' }, vim.bo.filetype) then
-    return ''
-  end
+  if vim.tbl_contains({ 'TelescopePrompt', 'NvimTree' }, vim.bo.filetype) then return '' end
   return table.concat({
     get_mode(),
     ' ',

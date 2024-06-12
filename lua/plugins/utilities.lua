@@ -57,16 +57,12 @@ return {
     keys = {
       {
         '<leader>e',
-        function()
-          require('yazi').yazi()
-        end,
+        function() require('yazi').yazi() end,
         desc = 'Open the file manager',
       },
       {
         '<leader>E',
-        function()
-          require('yazi').yazi(nil, vim.fn.getcwd())
-        end,
+        function() require('yazi').yazi(nil, vim.fn.getcwd()) end,
         desc = 'Open the file manager (cwd)',
       },
     },
