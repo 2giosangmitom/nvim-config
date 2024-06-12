@@ -16,20 +16,17 @@ return {
     opts = {
       server = {
         on_attach = function(_, bufnr)
-          vim.keymap.set('n', '<leader>ca', function() vim.cmd.RustLsp('codeAction') end, { desc = 'Code Action', buffer = bufnr })
-          vim.keymap.set('n', '<leader>dr', function() vim.cmd.RustLsp('debuggables') end, { desc = 'Rust Debuggables', buffer = bufnr })
+          local function map(key, cmd, desc) vim.keymap.set('n', key, cmd, { desc = desc, buffer = bufnr }) end
+          map('<leader>ca', function() vim.cmd.RustLsp('codeAction') end, 'Code Action')
+          map('<leader>dr', function() vim.cmd.RustLsp('debuggables') end, 'Rust Debuggables')
         end,
         default_settings = {
-          -- rust-analyzer language server configuration
           ['rust-analyzer'] = {
             cargo = {
               allFeatures = true,
               loadOutDirsFromCheck = true,
-              buildScripts = {
-                enable = true,
-              },
+              buildScripts = { enable = true },
             },
-            -- Add clippy lints for Rust.
             checkOnSave = {
               allFeatures = true,
               command = 'clippy',
@@ -83,28 +80,17 @@ return {
       {
         'nvimdev/lspsaga.nvim',
         opts = {
-          symbol_in_winbar = {
-            enable = false,
-            -- show_file = true,
-            -- folder_level = 0,
-          },
-          hover = {
-            open_cmd = '!xdg-open',
-          },
-          lightbulb = {
-            enable = false,
-          },
+          symbol_in_winbar = { enable = false },
+          hover = { open_cmd = '!xdg-open' },
+          lightbulb = { enable = false },
         },
       },
     },
     opts = function()
       local icons = require('config.icons')
-
       return {
         servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar' },
-        ui = {
-          border = 'rounded',
-        },
+        ui = { border = 'rounded' },
         diagnostics = {
           underline = true,
           update_in_insert = false,
@@ -118,7 +104,7 @@ return {
               [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
               [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
               [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-              [vim.diagnostic.severity.INFO] = icons.diagnostics.Infomation,
+              [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
             },
           },
         },
@@ -126,34 +112,50 @@ return {
     end,
     config = function(_, opts)
       local utils = require('utils')
-      -- Border
+
+      -- Setup border for LSP windows
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.ui.border })
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.ui.border })
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.ui.border })
       require('lspconfig.ui.windows').default_options.border = opts.ui.border
 
-      -- Diagnostics
+      -- Configure diagnostics
       vim.diagnostic.config(opts.diagnostics)
 
-      -- Setup keymaps
+      -- Setup keymaps for LSP
       utils.on_attach(function(_, bufnr)
         local function map(key, cmd, desc) vim.keymap.set('n', key, cmd, { desc = desc, buffer = bufnr }) end
         map('K', '<cmd>Lspsaga hover_doc<cr>', 'Hover')
-        map('<leader>ci', '<cmd>Lspsaga incoming_calls<cr>', 'Incoming calls')
-        map('<leader>co', '<cmd>Lspsaga outgoing_calls<cr>', 'Outgoing calls')
-        map('<leader>ca', '<cmd>Lspsaga code_action<cr>', 'Code action')
-        map('<leader>cd', '<cmd>Lspsaga peek_definition<cr>', 'Peek definition')
+        map('<leader>ci', '<cmd>Lspsaga incoming_calls<cr>', 'Incoming Calls')
+        map('<leader>co', '<cmd>Lspsaga outgoing_calls<cr>', 'Outgoing Calls')
+        map('<leader>ca', '<cmd>Lspsaga code_action<cr>', 'Code Action')
+        map('<leader>cd', '<cmd>Lspsaga peek_definition<cr>', 'Peek Definition')
         map('gd', '<cmd>Lspsaga goto_definition<cr>', 'Goto Definition')
         map('gr', '<cmd>Telescope lsp_references<cr>', 'References')
-        map(']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', 'Next diagnostic')
-        map('[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', 'Previous diagnostic')
+        map(']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', 'Next Diagnostic')
+        map('[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', 'Previous Diagnostic')
         map('<leader>cr', '<cmd>Lspsaga rename<cr>', 'Rename')
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-        map('gI', function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end, 'Goto Implementation')
+        map(
+          'gI',
+          function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end,
+          'Goto Implementation'
+        )
       end)
 
-      -- Setup servers
+      local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+      local capabilities = vim.tbl_deep_extend(
+        'force',
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+      )
+
+      -- Setup LSP servers
       for _, server in ipairs(opts.servers) do
-        local server_opts = {}
+        local server_opts = {
+          capabilities = capabilities,
+        }
         local ok, settings = pcall(require, 'lsp.' .. server)
         if ok then server_opts = vim.tbl_deep_extend('force', settings, server_opts) end
         require('lspconfig')[server].setup(server_opts)
@@ -193,7 +195,7 @@ return {
           fields = { 'menu', 'abbr', 'kind' },
           format = function(_, item)
             local icons = require('config.icons').kinds
-            if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
+            if icons[item.kind] then item.kind = icons[item.kind] .. item.kind .. ' ' end
             return item
           end,
         },
