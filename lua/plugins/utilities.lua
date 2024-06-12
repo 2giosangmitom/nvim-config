@@ -48,4 +48,28 @@ return {
       require('cmp').event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done({ tex = false }))
     end,
   },
+
+  {
+    'mikavilpas/yazi.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      {
+        '<leader>e',
+        function()
+          require('yazi').yazi()
+        end,
+        desc = 'Open the file manager',
+      },
+      {
+        '<leader>E',
+        function()
+          require('yazi').yazi(nil, vim.fn.getcwd())
+        end,
+        desc = 'Open the file manager (cwd)',
+      },
+    },
+    opts = {},
+  },
 }

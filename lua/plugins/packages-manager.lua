@@ -6,7 +6,7 @@ return {
       { '<leader>pm', '<cmd>Mason<cr>', desc = 'Mason' },
     },
     opts = {
-      ensure_installed = { 'lua-language-server', 'hadolint', 'gopls', 'codelldb' },
+      ensure_installed = { 'lua-language-server', 'hadolint', 'gopls', 'codelldb', "stylua" },
       ui = {
         icons = {
           package_pending = '',

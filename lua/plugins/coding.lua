@@ -90,8 +90,9 @@ return {
         'nvimdev/lspsaga.nvim',
         opts = {
           symbol_in_winbar = {
-            show_file = true,
-            folder_level = 0,
+            enable = false,
+            -- show_file = true,
+            -- folder_level = 0,
           },
           hover = {
             open_cmd = '!xdg-open',
