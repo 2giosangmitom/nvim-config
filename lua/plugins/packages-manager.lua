@@ -6,7 +6,22 @@ return {
       { '<leader>pm', '<cmd>Mason<cr>', desc = 'Mason' },
     },
     opts = {
-      ensure_installed = { 'lua-language-server', 'hadolint', 'gopls', 'codelldb', 'stylua' },
+      ensure_installed = {
+        'lua-language-server',
+        'hadolint',
+        'gopls',
+        'codelldb',
+        'stylua',
+        'vue-language-server',
+        'vtsls',
+        'eslint-lsp',
+        'gomodifytags',
+        'gofumpt',
+        'goimports',
+        'delve',
+        'golangci-lint',
+        'prettier',
+      },
       ui = {
         icons = {
           package_pending = '',
@@ -20,12 +35,15 @@ return {
 
       local mr = require('mason-registry')
       mr:on('package:install:success', function()
-        vim.defer_fn(function()
-          require('lazy.core.handler.event').trigger({
-            event = 'FileType',
-            buf = vim.api.nvim_get_current_buf(),
-          })
-        end, 100)
+        vim.defer_fn(
+          function()
+            require('lazy.core.handler.event').trigger({
+              event = 'FileType',
+              buf = vim.api.nvim_get_current_buf(),
+            })
+          end,
+          100
+        )
       end)
 
       mr.refresh(function()

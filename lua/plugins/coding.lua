@@ -11,7 +11,7 @@ return {
 
   {
     'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
+    version = '^4',
     ft = { 'rust' },
     opts = {
       server = {
@@ -89,7 +89,7 @@ return {
     opts = function()
       local icons = require('config.icons')
       return {
-        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar' },
+        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar', 'eslint' },
         ui = { border = 'rounded' },
         diagnostics = {
           underline = true,
