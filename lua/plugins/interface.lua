@@ -73,6 +73,11 @@ return {
         ['<leader>f'] = { name = '+file/find' },
         ['<leader>p'] = { name = '+packages' },
         ['<leader>x'] = { name = '+diagnostics/quickfix' },
+        [']'] = { name = '+next' },
+        ['['] = { name = '+prev' },
+        ['<leader><tab>'] = { name = '+tabs' },
+        ['<leader>b'] = { name = '+buffer' },
+        ['<leader>w'] = { name = '+windows' },
       },
     },
     config = function(_, opts)
