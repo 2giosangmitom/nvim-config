@@ -33,7 +33,7 @@ opt.fillchars = {
   diff = '╱',
   eob = ' ',
 }
-opt.laststatus = 3
+opt.laststatus = 0
 opt.linebreak = true
 opt.number = true
 opt.pumblend = 10

@@ -135,7 +135,6 @@ local function lsp_clients()
 end
 
 function M.generate()
-  if vim.tbl_contains({ 'TelescopePrompt', 'NvimTree' }, vim.bo.filetype) then return '' end
   return table.concat({
     get_mode(),
     ' ',
