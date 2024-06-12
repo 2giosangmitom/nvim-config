@@ -1,7 +1,7 @@
 require('config.options')
 require('config.keymaps')
 require('config.autocmds')
-require('statusline')
+vim.opt.statusline = '%{%v:lua.require("statusline").generate()%}'
 
 -- Install `lazy.nvim`
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

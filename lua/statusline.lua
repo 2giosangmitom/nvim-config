@@ -47,7 +47,6 @@ local modes = {
 local separators = { left = '', right = '' }
 local sep_l, sep_r = separators.left, separators.right
 
--- Get current mode info
 local function get_mode()
   local mode = vim.api.nvim_get_mode().mode
   local mode_info = modes[mode] or { 'UNKNOWN', 'Unknown' }
@@ -61,7 +60,6 @@ local function get_mode()
   )
 end
 
--- Get current file info
 local function get_file_info()
   local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(0))
   local file_name = buf_name == '' and 'Empty ' or buf_name:match('([^/\\]+)$')
@@ -80,7 +78,6 @@ local function get_file_info()
   return string.format('%%#St_file#%s %s %%#St_file_sep#%s', icon, file_name, sep_r)
 end
 
--- Get current working directory
 local function get_cwd()
   local cwd = vim.uv.cwd()
   if not cwd then
@@ -92,10 +89,8 @@ local function get_cwd()
     or ''
 end
 
--- Cursor position info
 local function cursor()
-  local cur = vim.fn.line('.')
-  local total = vim.fn.line('$')
+  local cur, total = vim.fn.line('.'), vim.fn.line('$')
   if cur == 1 then
     return string.format('%%#St_pos_sep#%s%%#St_pos_icon# %%#St_pos_text# Top ', sep_l)
   elseif cur == total then
@@ -109,7 +104,6 @@ local function cursor()
   end
 end
 
--- Get git status
 local function get_git_status()
   local buf = vim.api.nvim_win_get_buf(0)
   local git_status = vim.b[buf].gitsigns_status_dict
@@ -117,24 +111,18 @@ local function get_git_status()
     return ''
   end
 
-  local added = git_status.added
-      and git_status.added ~= 0
-      and string.format(' %%#St_gitadded#%s%d', icons.git.added, git_status.added)
-    or ''
-  local changed = git_status.changed
-      and git_status.changed ~= 0
-      and string.format(' %%#St_gitmodified#%s%d', icons.git.modified, git_status.changed)
-    or ''
-  local removed = git_status.removed
-      and git_status.removed ~= 0
-      and string.format(' %%#St_gitremoved#%s%d', icons.git.removed, git_status.removed)
-    or ''
+  local function status_info(count, icon, hl_group)
+    return count and count ~= 0 and string.format(' %%#%s#%s%d', hl_group, icon, count) or ''
+  end
+
+  local added = status_info(git_status.added, icons.git.added, 'St_gitadded')
+  local changed = status_info(git_status.changed, icons.git.modified, 'St_gitmodified')
+  local removed = status_info(git_status.removed, icons.git.removed, 'St_gitremoved')
   local branch_name = '%#St_gitbranch# ' .. git_status.head
 
   return string.format(' %s%s%s%s', branch_name, added, changed, removed)
 end
 
--- Get diagnostics info
 local function get_diagnostics()
   if not rawget(vim, 'lsp') then
     return ''
@@ -175,7 +163,6 @@ local function lsp_clients()
   return '%#St_lspSv#   LSP ~ ' .. table.concat(client_names, ', ') .. ' '
 end
 
--- Generate statusline
 function M.generate()
   if vim.tbl_contains({ 'TelescopePrompt', 'NvimTree' }, vim.bo.filetype) then
     return ''
@@ -192,7 +179,5 @@ function M.generate()
     cursor(),
   })
 end
-
-vim.opt.statusline = '%{%v:lua.require("statusline").generate()%}'
 
 return M

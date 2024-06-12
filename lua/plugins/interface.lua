@@ -108,7 +108,12 @@ return {
 
   {
     'nvimdev/dashboard-nvim',
-    lazy = false,
+    init = function()
+      local stats = vim.fn.argc()
+      if stats == 0 then
+        require('dashboard')
+      end
+    end,
     opts = function()
       local logo = [[
 ██████╗ ██╗  ██╗███████╗██╗      ██████╗ ██╗
@@ -238,6 +243,46 @@ return {
         '<leader>xQ',
         '<cmd>Trouble qflist toggle<cr>',
         desc = 'Quickfix List (Trouble)',
+      },
+    },
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    event = { 'BufReadPost', 'BufNewFile' },
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    keys = {
+      { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
+      { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
+      { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
+      { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
+      { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+      { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+      { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+      { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+      { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+      { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
+      { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
+        callback = function()
+          vim.schedule(function()
+            pcall(nvim_bufferline)
+          end)
+        end,
+      })
+    end,
+    opts = {
+      options = {
+        diagnostics = 'nvim_lsp',
+        always_show_bufferline = true,
+        diagnostics_indicator = function(_, _, diag)
+          local icons = require('config.icons').diagnostics
+          local ret = (diag.error and icons.Error .. ' ' .. diag.error .. ' ' or '')
+            .. (diag.warning and icons.Warning .. ' ' .. diag.warning or '')
+          return vim.trim(ret)
+        end,
       },
     },
   },

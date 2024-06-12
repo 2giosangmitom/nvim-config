@@ -46,6 +46,7 @@ opt.termguicolors = true
 opt.winminwidth = 5
 opt.wrap = false
 opt.smoothscroll = true
+opt.showtabline = 2
 
 -- Editing Behavior
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
