@@ -89,7 +89,7 @@ return {
     opts = function()
       local icons = require('config.icons')
       return {
-        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar', 'eslint' },
+        servers = { 'lua_ls', 'dockerls', 'docker_compose_language_service', 'gopls', 'vtsls', 'volar', 'eslint', 'nil_ls' },
         ui = { border = 'rounded' },
         diagnostics = {
           underline = true,

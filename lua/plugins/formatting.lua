@@ -14,6 +14,7 @@ return {
         formatters_by_ft = {
           lua = { 'stylua' },
           go = { 'goimports', 'gofumpt' },
+          nix = { 'alejandra' },
         },
       }
       local prettier_supported = {
