@@ -15,6 +15,7 @@ return {
           lua = { 'stylua' },
           go = { 'goimports', 'gofumpt' },
           nix = { 'alejandra' },
+          typst = { 'typstfmt' },
         },
       }
       local prettier_supported = {

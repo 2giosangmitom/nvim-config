@@ -21,6 +21,8 @@ return {
         'delve',
         'golangci-lint',
         'prettier',
+        'typstfmt',
+        'typst-lsp'
       },
       ui = {
         icons = {
