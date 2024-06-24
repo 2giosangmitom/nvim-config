@@ -1,11 +1,11 @@
 return {
   -- Git symbols
   git = {
-    Add = '',
+    Added = '',
     Branch = '',
-    Change = '',
+    Changed = '',
     Conflict = '',
-    Delete = '',
+    Deleted = '',
     Ignored = '◌',
     Renamed = '➜',
     Sign = '▎',
@@ -71,5 +71,10 @@ return {
     LogPoint = '󰛿',
     Stopped = '󰁕',
     Debugger = '',
+  },
+
+  ui = {
+    Dir = '󰉋',
+    DirOpen = '󰝰',
   },
 }
