@@ -67,9 +67,6 @@ map('v', '>', '>gv')
 -- Lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
--- New file
-map('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
-
 -- Location and Quickfix Lists
 map('n', '<leader>xl', '<cmd>lopen<cr>', { desc = 'Location List' })
 map('n', '<leader>xq', '<cmd>copen<cr>', { desc = 'Quickfix List' })
