@@ -23,6 +23,8 @@ return {
       ['<leader>u'] = { name = ' UI' },
       ['<leader>w'] = { name = ' Windows' },
       ['<leader>x'] = { name = '󰒡 Diagnostics/Quickfix' },
+      ['<leader>T'] = { name = ' Terminal' },
+      ['<leader>t'] = { name = '󰙨 Test' },
     })
   end,
 }
