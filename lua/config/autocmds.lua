@@ -1,6 +1,6 @@
 local function create_augroup(name) return vim.api.nvim_create_augroup(name, { clear = true }) end
 
--- Check if we need to reload the file when it changed
+-- Check if we need to reload the file when it changes
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   group = create_augroup('checktime'),
   callback = function()
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank() end,
 })
 
--- go to last loc when opening a buffer
+-- Go to the last location when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = create_augroup('last_loc'),
   callback = function(event)
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- Resize splits if window got resized
+-- Resize splits if window is resized
 vim.api.nvim_create_autocmd('VimResized', {
   group = create_augroup('resize_splits'),
   callback = function()
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
+-- Auto create directory when saving a file, in case some intermediate directories do not exist
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = create_augroup('auto_create_dir'),
   callback = function(event)
