@@ -1,15 +1,5 @@
 require('config.options')
-require('config.keymaps')
-require('config.autocmds')
 
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
-  callback = function()
-    vim.opt.laststatus = 3
-    vim.opt.statusline = '%{%v:lua.require("statusline").generate()%}'
-  end,
-})
-
--- Install `lazy.nvim`
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -35,8 +25,12 @@ require('lazy').setup({
     patterns = { '2giosangmitom' },
     path = '~/Workspace/neovim-plugins',
   },
-  install = { colorscheme = { 'nightfall', 'habamax' } },
-  checker = { enabled = false },
+  install = {
+    colorscheme = { 'nightfall', 'habamax' },
+  },
+  checker = {
+    enabled = false,
+  },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -71,3 +65,6 @@ require('lazy').setup({
     },
   },
 })
+
+require('config.keymaps')
+require('config.autocmds')

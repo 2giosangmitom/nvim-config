@@ -1,16 +1,28 @@
 return {
+  -- Git symbols
   git = {
-    added = ' ',
-    modified = ' ',
-    removed = ' ',
+    Add = '',
+    Branch = '',
+    Change = '',
+    Conflict = '',
+    Delete = '',
+    Ignored = '◌',
+    Renamed = '➜',
+    Sign = '▎',
+    Staged = '✓',
+    Unstaged = '✗',
+    Untracked = '★',
   },
+
+  -- Diagnostic symbols
   diagnostics = {
     Error = '',
-    Warning = '',
-    Information = '',
-    Question = '',
-    Hint = '',
+    Hint = '󰌵',
+    Info = '󰋼',
+    Warn = '',
   },
+
+  -- Symbol kinds
   kinds = {
     Array = ' ',
     Boolean = '󰨙 ',
@@ -21,7 +33,6 @@ return {
     Collapsed = ' ',
     Constant = '󰏿 ',
     Constructor = ' ',
-    Copilot = ' ',
     Enum = ' ',
     EnumMember = ' ',
     Event = ' ',
@@ -45,18 +56,20 @@ return {
     Snippet = ' ',
     String = ' ',
     Struct = '󰆼 ',
-    TabNine = '󰏚 ',
     Text = ' ',
     TypeParameter = ' ',
     Unit = ' ',
     Value = ' ',
     Variable = '󰀫 ',
   },
+
+  -- DAP symbols
   dap = {
-    Stopped = { '󰁕 ', 'DiagnosticWarn', 'DapStoppedLine' },
-    Breakpoint = ' ',
-    BreakpointCondition = ' ',
-    BreakpointRejected = { ' ', 'DiagnosticError' },
-    LogPoint = '.>',
+    Breakpoint = '',
+    BreakpointCondition = '',
+    BreakpointRejected = '',
+    LogPoint = '󰛿',
+    Stopped = '󰁕',
+    Debugger = '',
   },
 }
