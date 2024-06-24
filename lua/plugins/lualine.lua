@@ -27,7 +27,7 @@ return {
       if not cwd then return '' end
       local cwd_name = cwd:match('([^/\\]+)$') or cwd
       return vim.o.columns > 85
-          and string.format('%%#St_cwd_sep#%s%%#St_cwd_icon#󰉋 %%#St_cwd_text# %s ', '', cwd_name)
+          and string.format('%%#St_cwd_sep#%s%%#St_cwd_icon#' .. icons.ui.Dir .. ' %%#St_cwd_text# %s ', '', cwd_name)
         or ''
     end
 
