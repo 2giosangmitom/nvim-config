@@ -37,7 +37,12 @@ map('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete Buffer' })
 map({ 'i', 'n' }, '<Esc>', '<cmd>noh<cr><Esc>', { desc = 'Escape and Clear hlsearch' })
 
 -- Clear search, diff update and redraw
-map('n', '<leader>ur', '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>', { desc = 'Redraw / Clear hlsearch / Diff Update' })
+map(
+  'n',
+  '<leader>ur',
+  '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
+  { desc = 'Redraw / Clear hlsearch / Diff Update' }
+)
 
 -- Next and Previous Search Result
 map('n', 'n', "'Nn'[v:searchforward].'zv'", { desc = 'Next Search Result', expr = true })
