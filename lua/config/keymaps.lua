@@ -26,13 +26,6 @@ map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 map('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
--- Buffers
-map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
-map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
-map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
-map('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
-map('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Delete Buffer' })
-
 -- Clear search with <Esc>
 map({ 'i', 'n' }, '<Esc>', '<cmd>noh<cr><Esc>', { desc = 'Escape and Clear hlsearch' })
 
