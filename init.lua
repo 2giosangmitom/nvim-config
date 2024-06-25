@@ -23,6 +23,11 @@ require('lazy').setup({
     lazy = true,
     version = false,
   },
+  pkg = {
+    sources = {
+      'lazy',
+    },
+  },
   dev = {
     patterns = { '2giosangmitom' },
     path = '~/Workspace/neovim-plugins',
