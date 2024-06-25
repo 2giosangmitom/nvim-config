@@ -18,6 +18,14 @@ return {
       enable_diagnostics = true,
       open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' },
       sort_case_insensitive = false,
+      window = {
+        mappings = {
+          ['l'] = 'open',
+          ['h'] = 'close_node',
+          ['<space>'] = 'none',
+          ['P'] = { 'toggle_preview', config = { use_float = false } },
+        },
+      },
       default_component_configs = {
         icon = {
           folder_closed = icons.ui.Dir,
