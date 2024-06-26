@@ -12,7 +12,7 @@ return {
           icons = {
             package_pending = icons.ui.Pending,
             package_installed = icons.ui.CheckMark,
-            package_uninstalled = '󰚌 ',
+            package_uninstalled = '󰚌',
           },
         },
       }

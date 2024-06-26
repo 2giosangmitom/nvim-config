@@ -76,7 +76,7 @@ return {
   ui = {
     Dir = '󰉋',
     DirOpen = '󰝰',
-    CheckMark = '󰄳 ',
-    Pending = ' '
+    CheckMark = '󰄳',
+    Pending = ''
   },
 }
