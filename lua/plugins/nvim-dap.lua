@@ -54,6 +54,25 @@ return {
       { '<leader>dt', function() require('dap').terminate() end, desc = 'Terminate' },
       { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'Widgets' },
     },
+    config = function()
+      local icons = require('config.icons').dap
+
+      local signs = {
+        { name = 'DapBreakpoint', text = icons.Breakpoint, texthl = 'DapBreakpoint' },
+        { name = 'DapBreakpointCondition', text = icons.BreakpointCondition, texthl = 'DapBreakpointCondition' },
+        { name = 'DapBreakpointRejected', text = icons.BreakpointRejected, texthl = 'DapBreakpointRejected' },
+        { name = 'DapLogPoint', text = icons.LogPoint, texthl = 'DapLogPoint' },
+        { name = 'DapStopped', text = icons.Stopped, texthl = 'DapStopped' },
+      }
+
+      for _, sign in ipairs(signs) do
+        vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.texthl })
+      end
+
+      local vscode = require('dap.ext.vscode')
+      local json = require('plenary.json')
+      vscode.json_decode = function(str) return vim.json.decode(json.json_strip_comments(str)) end
+    end,
   },
 
   {
