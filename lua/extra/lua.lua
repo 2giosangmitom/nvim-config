@@ -59,4 +59,11 @@ return {
     'hrsh7th/nvim-cmp',
     opts = function(_, opts) table.insert(opts.sources, { name = 'lazydev', group_index = 0 }) end,
   },
+
+  {
+    'williamboman/mason.nvim',
+    opts = {
+      ensure_installed = { 'stylua' },
+    },
+  },
 }
