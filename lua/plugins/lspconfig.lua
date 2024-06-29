@@ -11,6 +11,7 @@ return {
       setup = {},
     },
     config = function(_, opts)
+      local icons = require('config.icons')
       local servers = opts.servers
       local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
       local capabilities = vim.tbl_deep_extend(
@@ -20,6 +21,24 @@ return {
         has_cmp and cmp_nvim_lsp.default_capabilities() or {},
         opts.capabilities or {}
       )
+
+      vim.diagnostic.config({
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = 'if_many',
+        },
+        severity_sort = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+          },
+        },
+      })
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend('force', {
