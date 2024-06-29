@@ -26,6 +26,8 @@ return {
       ['<leader>T'] = { name = ' Terminal' },
       ['<leader>t'] = { name = '󰙨 Test' },
       ['<leader>s'] = { name = '󰛔 Search/Replace' },
+      ['<leader>o'] = { name = ' Overseer' },
+      ['<leader>d'] = { name = ' Debug' },
     })
   end,
 }
