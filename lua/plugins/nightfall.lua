@@ -7,6 +7,7 @@ return {
     integrations = {
       flash = { enabled = true },
       headlines = { enabled = true },
+      nvim_dap = { enabled = true },
     },
     highlight_overrides = {
       nightfall = function(colors)
@@ -18,6 +19,7 @@ return {
           St_cwd_text = { fg = colors.light_cyan, bg = colors.deep_navy },
           St_cwd_sep = { fg = colors.light_cyan, bg = colors.statusline_bg },
           St_lspSv = { fg = colors.peach, bg = colors.statusline_bg },
+          DapStoppedLine = { default = true, link = 'Visual' },
         }
       end,
     },
