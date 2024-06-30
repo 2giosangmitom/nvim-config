@@ -41,10 +41,10 @@ return {
           { '<leader>cC', vim.lsp.codelens.refresh, buffer = bufnr, desc = 'Refresh & Display Codelens' },
         }
 
-        for _, key in ipairs(keymaps) do
-          local key_opts = Keys.opts(key)
+        for _, keymap in ipairs(keymaps) do
+          local key_opts = Keys.opts(keymap)
           ---@diagnostic disable-next-line: param-type-mismatch
-          vim.keymap.set(key.mode or 'n', key[1], key[2], key_opts)
+          vim.keymap.set(keymap.mode or 'n', keymap[1], keymap[2], key_opts)
         end
       end)
 
@@ -74,10 +74,10 @@ return {
         }, servers[server] or {})
 
         if server_opts.keys then
-          for _, keys in ipairs(server_opts.keys) do
-            local key_opts = Keys.opts(keys)
+          for _, keymap in ipairs(server_opts.keys) do
+            local key_opts = Keys.opts(keymap)
             ---@diagnostic disable-next-line: param-type-mismatch
-            vim.keymap.set(keys.mode or 'n', keys[1], keys[2], key_opts)
+            vim.keymap.set(keymap.mode or 'n', keymap[1], keymap[2], key_opts)
           end
         end
 
