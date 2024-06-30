@@ -76,6 +76,6 @@ return {
     Dir = '󰉋',
     DirOpen = '󰝰',
     CheckMark = '󰄳',
-    Pending = ''
+    Pending = '',
   },
 }
