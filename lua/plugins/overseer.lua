@@ -19,11 +19,16 @@ return {
     opts = {
       dap = false,
       task_list = {
+        direction = 'bottom',
+        min_height = 10,
+        max_height = 20,
+        default_detail = 1,
         bindings = {
           ['<C-h>'] = false,
           ['<C-j>'] = false,
           ['<C-k>'] = false,
           ['<C-l>'] = false,
+          ['q'] = function() vim.cmd('OverseerClose') end,
         },
       },
       form = {
