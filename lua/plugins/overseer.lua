@@ -65,6 +65,11 @@ return {
 
   {
     'nvim-neotest/neotest',
-    opts = function(_, opts) opts.consumers.overseer = require('neotest.consumers.overseer') end,
+    consumers = {
+      overseer = require('neotest.consumers.overseer'),
+    },
+    overseer = {
+      enabled = true,
+    },
   },
 }
