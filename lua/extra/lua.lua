@@ -70,7 +70,16 @@ return {
   {
     'williamboman/mason.nvim',
     opts = {
-      ensure_installed = { 'stylua' },
+      ensure_installed = { 'stylua', 'selene' },
+    },
+  },
+
+  {
+    'mfussenegger/nvim-lint',
+    opts = {
+      linters_by_ft = {
+        lua = { 'selene' },
+      },
     },
   },
 }
