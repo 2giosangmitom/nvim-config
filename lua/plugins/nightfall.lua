@@ -48,8 +48,4 @@ return {
       end,
     },
   },
-  config = function(_, opts)
-    require('nightfall').setup(opts)
-    vim.cmd('colorscheme maron')
-  end,
 }
