@@ -16,8 +16,14 @@ return {
       local cmp = require('cmp')
       return {
         window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+          completion = {
+            border = 'rounded',
+            winhighlight = 'Normal:CmpPmenu,CursorLine:CmpSel,Search:None',
+          },
+          documentation = {
+            border = 'rounded',
+            winhighlight = 'Normal:CmpDoc',
+          },
         },
         preselect = 'item',
         completion = {

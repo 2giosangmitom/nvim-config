@@ -5,7 +5,7 @@ local g = vim.g
 g.mapleader = ' '
 
 -- General Settings
-opt.autowrite = true
+opt.autowrite = false
 opt.preserveindent = true
 opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus'
 opt.confirm = true
@@ -20,6 +20,8 @@ opt.updatetime = 200
 opt.virtualedit = 'block'
 opt.writebackup = false
 opt.backup = false
+opt.swapfile = false
+opt.lazyredraw = true
 
 -- UI Settings
 opt.conceallevel = 2
@@ -33,7 +35,7 @@ opt.fillchars = {
   diff = '╱',
   eob = ' ',
 }
-opt.laststatus = 3
+opt.laststatus = 0
 opt.linebreak = true
 opt.number = true
 opt.pumblend = 10
@@ -70,9 +72,11 @@ opt.wildmode = 'longest:full,full'
 opt.foldlevel = 99
 opt.foldmethod = 'expr'
 opt.foldtext = ''
+opt.foldenable = true
 
 -- Disable unused providers
 g.loaded_node_provider = 0
 g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
+g.loaded_matchparen = 1
