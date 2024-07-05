@@ -1,9 +1,15 @@
 return {
-  'mikavilpas/yazi.nvim',
+  "mikavilpas/yazi.nvim",
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    "nvim-lua/plenary.nvim",
   },
   keys = {
-    { '<leader>E', function() require('yazi').yazi() end, desc = 'Open the file manager (Yazi)' },
+    {
+      "<leader>y",
+      function()
+        require("yazi").yazi()
+      end,
+      desc = "Open the file manager (Yazi)",
+    },
   },
 }
