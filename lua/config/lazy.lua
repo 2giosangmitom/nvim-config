@@ -34,6 +34,9 @@ require("lazy").setup({
   },
   install = { colorscheme = { "nightfall", "habamax" } },
   checker = { enabled = true },
+  readme = {
+    enabled = false,
+  },
   performance = {
     rtp = {
       disabled_plugins = {
