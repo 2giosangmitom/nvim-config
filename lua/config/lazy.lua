@@ -28,10 +28,6 @@ require("lazy").setup({
       "lazy",
     },
   },
-  dev = {
-    patterns = { "2giosangmitom" },
-    path = "~/Workspace/neovim-plugins",
-  },
   install = { colorscheme = { "nightfall", "habamax" } },
   checker = { enabled = true },
   readme = {
