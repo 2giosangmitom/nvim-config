@@ -20,7 +20,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   defaults = {
-    lazy = false,
+    lazy = true,
     version = false,
   },
   pkg = {
@@ -29,7 +29,6 @@ require("lazy").setup({
     },
   },
   install = { colorscheme = { "nightfall", "habamax" } },
-  checker = { enabled = true },
   readme = {
     enabled = false,
   },
