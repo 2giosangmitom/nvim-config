@@ -3,6 +3,9 @@ return {
   opts = {
     servers = {
       cssls = {},
+      nil_ls = {
+        mason = false,
+      },
     },
   },
 }
