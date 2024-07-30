@@ -37,4 +37,9 @@ return {
       require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false }))
     end,
   },
+
+  {
+    "wakatime/vim-wakatime",
+    event = { "BufReadPost", "BufNewFile" },
+  },
 }
