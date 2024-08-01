@@ -2,6 +2,8 @@ return {
   { "tokyonight.nvim", enabled = false },
   { "catppuccin", enabled = false },
   { "mini.pairs", enabled = false },
+  { "dashboard-nvim", enabled = false },
+  { "nvim-treesitter-context", enabled = false },
 
   {
     "Wansmer/treesj",
@@ -10,6 +12,13 @@ return {
       { "<space>j", desc = "Join code block" },
       { "<space>s", desc = "Split code block" },
     },
+    opts = {},
+  },
+
+  {
+    "2giosangmitom/codetime.nvim",
+    dir = "~/Workspace/neovim-plugins/codetime.nvim",
+    event = "VimEnter",
     opts = {},
   },
 
@@ -39,7 +48,13 @@ return {
   },
 
   {
-    "wakatime/vim-wakatime",
-    event = { "BufReadPost", "BufNewFile" },
+    "Zeioth/compiler.nvim",
+    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+    opts = {},
+  },
+
+  {
+    "markdown-preview.nvim",
+    enabled = false,
   },
 }

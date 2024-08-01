@@ -8,7 +8,6 @@
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.editor.telescope",
     "lazyvim.plugins.extras.formatting.prettier",
-    "lazyvim.plugins.extras.lang.astro",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.docker",
     "lazyvim.plugins.extras.lang.git",
