@@ -18,7 +18,7 @@ return {
   {
     "2giosangmitom/codetime.nvim",
     dir = "~/Workspace/neovim-plugins/codetime.nvim",
-    event = "VimEnter",
+    lazy = false,
     opts = {},
   },
 
