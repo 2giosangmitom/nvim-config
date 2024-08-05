@@ -32,7 +32,7 @@ return {
         if not ok then
           return ""
         end
-        return "󱢅 " .. codetime.get_session_codetime()
+        return "󱢅 " .. codetime.get_session_time()
       end,
     }
   end,

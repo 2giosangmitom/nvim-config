@@ -1,2 +1,2 @@
-vim.opt.shell = "fish"
+vim.opt.shell = "zsh"
 vim.g.autoformat = false
